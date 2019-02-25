@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Pickups</title>
+    <link rel="stylesheet" href="/stylesheets/style.css">
+
+  </head>
+
+<body>
+  <header>
+    <div class="title">
+      <img src="./images/soccer-ball-on-the-goal-sport-web-header2.jpg" alt="">
+    </div>
+    <nav>
+      <div class="navBar">
+        <a href="#">Find a Pickup</a>
+      </div>
+      <div class="navBar">
+        <a href="#">Make New Pickup</a>
+      </div>
+      <div class="navBar">
+        <a href="#">My Games</a>
+      </div>
+      <div class="navBar">
+        <a href="#">Choose New Sport</a>
+      </div>
+      <div class="logout">
+        <ul class="right">
+         <li>
+         <% if (user) { %>
+           <a href="/logout"><i class="material-icons left">trending_flat</i>Log Out</a>
+         <% } else { %>
+           <a href="/auth/google"><i class="material-icons left">vpn_key</i>Login with Google</a>
+         <% } %>
+         </li>
+        </ul>
+      </div>
+    </header>
+  </nav>

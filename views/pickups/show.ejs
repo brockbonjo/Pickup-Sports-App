@@ -1,0 +1,38 @@
+<%- include('./partials/header') %>
+
+
+<main class="show">
+
+  <div class="showDetails">
+    <div class="leftShow">
+      <div class="comments">
+        Host Comments
+      </div>
+      <div class="timestampShow">
+         Game Started: <!--reference to timestamp -->
+      </div>
+      <div class="numPlayersShow">
+        #players joined
+      </div>
+      <div class="playersJoined">
+        <select class="playersJoined" name="Others Playing">
+          <!-- forEach whos already joind from db -->
+        </select>
+      </div>
+    </div>
+    <div class="rightShow">
+      <div class="showMap">
+        Map.API
+      </div>
+      <div class="directions">
+        Directions
+      </div>
+    </div>
+
+  </div>
+
+
+</main>
+
+
+<%- include('./partials/footer') %>

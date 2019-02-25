@@ -1,0 +1,191 @@
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+body {
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color: rgb(47, 213, 5);
+  margin: 0;
+}
+
+/* header styling */
+header {
+  width:100%;
+  text-align:center;
+  background-color: black;
+}
+img {
+  display: inline-block;
+  position: relative;
+  max-width: 100%;
+  max-height: 200px;
+  margin: 0 auto;
+}
+nav {
+  display: flex;
+  margin-top: -4px;
+  background-color: grey;
+  border: 2px solid black;
+  height: 50px;
+  z-index: 1;
+}
+
+nav > div {
+  justify-content: flex-start;
+  align-content: center;
+  font-size: 18px;
+  padding: 0 5px;
+  border-right: 1px solid black;
+  border-left: 1px solid black;
+}
+
+.logout {
+  margin-left: auto;
+}
+
+a {
+  color: white;
+  text-decoration: none;
+}
+
+main {
+  grid-area: main;
+  display: flex;
+  flex-wrap: wrap;
+}
+label {
+  background-color: grey;
+  padding: 2px;
+  text-align: center;
+}
+
+/* index styling */
+.pickup {
+  width: 250px;
+  padding: 20px;
+  display: grid;
+  grid-template-columns: 125px 125px;
+  grid-template-rows: 200px 50px;
+  grid-template-areas:
+    "pickupMap pickupMap"
+    "timestamp numPlayers"
+}
+.pickupMap {
+  display: grid;
+  grid-area: pickupMap;
+  border: 1px solid black;
+}
+.timeStamp {
+  display: grid;
+  grid-area: timestamp;
+  border: 1px solid black;
+}
+.numPlayers {
+  display: grid;
+  grid-area: numPlayers;
+  border: 1px solid black;
+}
+
+
+/* show Pickup styling */
+.showDetails {
+  margin: 20px auto;
+  display: grid;
+  background-color: white;
+  grid-template-columns: 250px 250px;
+  grid-template-areas:
+    "leftShow rightShow"
+}
+.rightShow {
+  border-top: 1px solid black;
+  border-right: 1px solid black;
+  border-bottom: 1px solid black;
+  display: grid;
+  grid-template-columns: 250px;
+  grid-template-rows: 150px 50px;
+  grid-template-areas:
+    "map"
+    "directions"
+}
+.leftShow {
+  border: 1px solid black;
+  display: grid;
+  grid-template-columns: 250px;
+  grid-template-rows: 50px 50px 50px 50px;
+  grid-template-areas:
+    "comments"
+    "timestamp"
+    "numPlayers"
+    "playersJoined"
+}
+.comments {
+  grid-area: comments;
+  border-bottom: 1px solid black;
+}
+.timestampShow {
+  grid-area: timestamp;
+  border-bottom: 1px solid black;
+}
+.numPlayersShow {
+  grid-area: numPlayers;
+  border-bottom: 1px solid black;
+}
+.playersJoined {
+  grid-area: playersJoined;
+}
+.showMap {
+  grid-area: map;
+}
+.directions {
+  grid-area: directions;
+  border-top: 1px solid black;
+}
+
+/*New Pickup styling*/
+.newDetails {
+  margin: 20px auto;
+  display: grid;
+  background-color: white;
+  grid-template-columns: 250px 250px;
+  grid-template-areas:
+    "leftShow rightShow"
+}
+.rightNew {
+  border-top: 1px solid black;
+  border-right: 1px solid black;
+  border-bottom: 1px solid black;
+  display: grid;
+  grid-template-columns: 250px;
+  grid-template-rows: 200px;
+  grid-template-areas:
+    "map"
+}
+.leftNew {
+  border: 1px solid black;
+  display: grid;
+  grid-template-columns: 250px;
+  grid-template-rows: 1fr 1fr 1fr;
+  grid-template-areas:
+    "locations"
+    "newComments"
+    "numPlayersNew"
+}
+.locations {
+  grid-area: locations;
+  border-bottom: 1px solid black;
+}
+.newComments {
+  grid-area: newComments;
+  border-bottom: 1px solid black;
+}
+
+.numPlayersNew {
+  grid-area: numPlayersNew;
+}
+
+.newMap {
+  grid-area: map;
+}
