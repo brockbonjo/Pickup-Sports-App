@@ -1,14 +1,17 @@
-<%- include('./partials/header') %>
+<%- include('../partials/header') %>
 
 
 <main class="new">
 
+<form class="" action="/sport" method="POST">
   <div class="newDetails">
     <div class="leftNew">
       <div class="locations">
-        <label for="">Select a location</label>
+        <label for="">Select a location</label> <br>
         <select class="" name="Location">
-          <!-- Dropdown menu for location options -->
+          <option value="ZilkerPark">ZilkerPark</option>
+          <option value="UT Fields">UT Fields</option>
+          <option value="Onion Creek">OnionCreek</option>
         </select>
       </div>
       <div class="newComments">
@@ -27,9 +30,10 @@
     </div>
 
   </div>
-
+  <input type="submit" value="Add Game">
+</form>
 
 </main>
 
 
-<%- include('./partials/footer') %>
+<%- include('../partials/footer') %>

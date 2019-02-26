@@ -51,6 +51,17 @@ a {
   text-decoration: none;
 }
 
+.blank {
+  display: flex;
+  flex-direction: row;
+}
+
+.sportsball {
+  text-decoration: none;
+  color: black;
+  width: 150px;
+}
+
 main {
   grid-area: main;
   display: flex;

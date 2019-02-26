@@ -14,27 +14,24 @@
     </div>
     <nav>
       <div class="navBar">
-        <a href="#">Find a Pickup</a>
+        <a href="/">Choose New Sport</a>
       </div>
       <div class="navBar">
-        <a href="#">Make New Pickup</a>
+        <a href="/sport">Find a Pickup</a> <!--/pickups/sport/:id-->
       </div>
       <div class="navBar">
-        <a href="#">My Games</a>
+        <a href="/new">Make New Pickup</a>
       </div>
       <div class="navBar">
-        <a href="#">Choose New Sport</a>
+        <!-- EJS if logged in: -->
+         <a href="#">My Games</a>
       </div>
       <div class="logout">
-        <ul class="right">
-         <li>
-         <% if (user) { %>
-           <a href="/logout"><i class="material-icons left">trending_flat</i>Log Out</a>
-         <% } else { %>
-           <a href="/auth/google"><i class="material-icons left">vpn_key</i>Login with Google</a>
-         <% } %>
-         </li>
-        </ul>
+        	<% if (user) { %>
+        		<a href="/logout">Log Out</a>
+        	<% } else { %>
+        		<a href="/auth/google">Login with Google</a>
+        	<% } %>
       </div>
     </header>
   </nav>
