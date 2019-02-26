@@ -3,12 +3,20 @@
 
 <main class="new">
 
-<form class="" action="/sport" method="POST">
+<form class="" action="/soccer" method="POST">
   <div class="newDetails">
     <div class="leftNew">
-      <div class="locations">
+      <div class="sport">
+        <label for="">Choose your Sport:</label>
+        <select class="" name="sport">
+          <option value="soccer">Soccer</option>
+          <option value="football">Football</option>
+          <option value="frisbee">Ultimate Frisbee</option>
+        </select>
+      </div>
+        <div class="locations">
         <label for="">Select a location</label> <br>
-        <select class="" name="Location">
+        <select class="" name="location">
           <option value="ZilkerPark">ZilkerPark</option>
           <option value="UT Fields">UT Fields</option>
           <option value="Onion Creek">OnionCreek</option>
@@ -16,11 +24,11 @@
       </div>
       <div class="newComments">
         <label for="">Comments on the location</label>
-        <input type="text" name="" value="">
+        <input type="text" name="hostComments" value="">
       </div>
       <div class="numPlayersNew">
-        <label for="">How many players are with you?</label>
-        <input type="text" name="" value="">
+        <label for="">How many players are starting with you?</label>
+        <input type="text" name="numOriginalPlayers" value="">
       </div>
     </div>
     <div class="rightNew">

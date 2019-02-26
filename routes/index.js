@@ -9,12 +9,9 @@ router.get('/', pickupsController.allSports);
 
 router.get('/new', pickupsController.newForm);
 
-router.get('/sport', pickupsController.showSport);
-// router.get('/sport/:id', function (req, res, next) {
-//   res.render('pickups/:id/')
-// })
+router.get('/soccer', pickupsController.showSport);
 
-router.post('/sport', pickupsController.newGame);
+router.post('/soccer', pickupsController.createNew);
 
 
 
@@ -32,8 +29,8 @@ router.get('/auth/google', passport.authenticate(
 
 router.get('/oauth2callback', passport.authenticate('google',
 {
-  successRedirect: '/soccer',
-  failureRedirect: '/soccer',
+  successRedirect: '/',
+  failureRedirect: '/',
 }
 ));
 

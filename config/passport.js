@@ -14,7 +14,7 @@ passport.use(new GoogleStrategy({
       cb(null, player);
     } else {
       //new user/not logged in before
-      var Player = new Player({
+      var newPlayer = new Player({
         name: profile.displayName,
         email: profile.emails[0].value,
         googleId: profile.id,
@@ -22,7 +22,7 @@ passport.use(new GoogleStrategy({
       newPlayer.save(function(err) {
         if (err) return cb(err);
         return cb(null, newPlayer);
-      })
+      });
     };
   });
 }));

@@ -178,12 +178,19 @@ label {
   border: 1px solid black;
   display: grid;
   grid-template-columns: 250px;
-  grid-template-rows: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr;
   grid-template-areas:
+    "sport"
     "locations"
     "newComments"
     "numPlayersNew"
 }
+
+.sport{
+  grid-area: sport;
+  border-bottom: 1px solid black;
+}
+
 .locations {
   grid-area: locations;
   border-bottom: 1px solid black;
