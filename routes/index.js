@@ -11,10 +11,13 @@ router.get('/new', pickupsController.newForm);
 
 router.get('/soccer', pickupsController.showSport);
 
-router.post('/soccer', pickupsController.createNew);
+router.post('/soccer', isLoggedIn, pickupsController.createNew);
 
 
-
+function isLoggedIn(req, res, next) {
+  if (req.isAuthenticated()) return next();
+  res.redirect('/auth/google');
+}
 
 
 //All google/passport below

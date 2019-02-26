@@ -3,67 +3,21 @@
 
 <main>
   <!-- forEach for all active pickups in sport -->
+  <% pickup.forEach(function (p) { %>
   <a href="/pickups/p._id needs squids once func written">
   <div class="pickup">
     <div class="pickupMap">
-      Map.API
+      <%= p.location %>
     </div>
     <div class="timeStamp">
-      Ref to games timestamp
+      <%= p.timestamps %>
     </div>
     <div class="numPlayers">
-      Ref to players joined
+      <%= p.numOriginalPlayers + p.rsvp.length %>
     </div>
   </div>
   </a>
-  <div class="pickup">
-    <!-- forEach for all active pickups in sport -->
-    <div class="pickupMap">
-      Map.API
-    </div>
-    <div class="timeStamp">
-      Ref to games timestamp
-    </div>
-    <div class="numPlayers">
-      Ref to players joined
-    </div>
-  </div>
-  <div class="pickup">
-    <!-- forEach for all active pickups in sport -->
-    <div class="pickupMap">
-      Map.API
-    </div>
-    <div class="timeStamp">
-      Ref to games timestamp
-    </div>
-    <div class="numPlayers">
-      Ref to players joined
-    </div>
-  </div>
-  <div class="pickup">
-    <!-- forEach for all active pickups in sport -->
-    <div class="pickupMap">
-      Map.API
-    </div>
-    <div class="timeStamp">
-      Ref to games timestamp
-    </div>
-    <div class="numPlayers">
-      Ref to players joined
-    </div>
-  </div>
-  <div class="pickup">
-    <!-- forEach for all active pickups in sport -->
-    <div class="pickupMap">
-      Map.API
-    </div>
-    <div class="timeStamp">
-      Ref to games timestamp
-    </div>
-    <div class="numPlayers">
-      Ref to players joined
-    </div>
-  </div>
+  <% }) %>
 
 </main>
 
