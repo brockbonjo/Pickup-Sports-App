@@ -17,8 +17,7 @@ var playerSchema = new mongoose.Schema({
   },
   currentGame: [], /*WANT TO ADD FUNCTION THAT PUSHES CURRENTGAME INTO PASTGAMES*/
   pastGames: [],
-}, {
-  timestamps: true,
+  timestamps: { type: Date },
 });
 
 module.exports = mongoose.model('Player', playerSchema);

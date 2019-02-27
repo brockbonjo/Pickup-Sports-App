@@ -4,25 +4,26 @@
 <main class="show">
 
   <div class="showDetails">
+
     <div class="leftShow">
       <div class="comments">
-        Host Comments
+        Host Comments <%= pickup.hostComments %>
       </div>
       <div class="timestampShow">
-         Game Started: <!--reference to timestamp -->
+         Game Started: <%= pickup.createdAt %>
       </div>
       <div class="numPlayersShow">
-        #players joined
+        <%= pickup.numOriginalPlayers + pickup.rsvp.length %>
       </div>
       <div class="playersJoined">
         <select class="playersJoined" name="Others Playing">
-          <!-- forEach whos already joind from db -->
+          <%= pickup.rsvp %>
         </select>
       </div>
     </div>
     <div class="rightShow">
       <div class="showMap">
-        Map.API
+        <%= pickup.location %>
       </div>
       <div class="directions">
         Directions
@@ -30,9 +31,8 @@
     </div>
 
   </div>
-
-
-</main>
-
+<form class="" action="/show/<%=_id %>?_method=DELETE" method="DELETE">
+  <input type="submit" value="Cancel Pickup" >
+</form>
 
 <%- include('../partials/footer') %>

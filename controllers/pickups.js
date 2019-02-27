@@ -6,10 +6,21 @@ module.exports = {
   newForm,
   createNew,
   showSport,
+  showGame,
+  deleteGame,
 };
 
+function deleteGame(req, res) {
+  Pickup.findOne({'_id': req.params.id},
+  function (err, pickup) {
+    player.id(req.params.id).remove();
+    player.save(function (err) {
+      res.render('/pickups/soccer');
+    });
+  });
+}
+
 function allSports(req, res, next) {
-  console.log(req.user + 'hey');
   res.render('pickups/landingPage', { user: req.user });
 };
 
@@ -29,12 +40,12 @@ function createNew(req, res) {
   });
   // adding pickup to host playerShcema
   var player = new Player(req.user);
+  console.log(req.user._id)
   player.currentGame.push(req.body);
   player.save(function (err) {
-
-    console.log(pickup + ' pickup');
-    Pickup.find({}, function (err, pickup) {
-      res.render('pickups/soccer', { user: req.user, pickup: pickup });
+    showSport();
+    /*Pickup.find({}, function (err, pickup) {
+      res.render('pickups/soccer', { user: req.user, pickup: pickup });*/
     /*Need different redirect*/
   });
   pickup.host = player;
@@ -42,7 +53,31 @@ function createNew(req, res) {
 )}
 
 function showSport(req, res) {
-  Pickup.find({}, function (err, pickup) {
+  Pickup.find({}).sort('-createdAt').exec(function (err, pickup) {
     res.render('pickups/soccer', { user: req.user, pickup: pickup });
   });
 };
+
+function showGame(req, res) {
+  Pickup.findById(req.params.id)
+  .populate('rsvp').exec(function(err, pickup) {
+    // Performer.find({}).where('_id').nin(movie.cast)
+      console.log(pickup);
+      res.render('pickups/show', {
+        user: req.user,
+        pickup: pickup,
+      });
+    });
+}
+
+/*function showGame(req, res) {
+  Pickup.findById(req.params.id)
+  .populate('rsvp').exec(function(err, pickup) {
+    // Performer.find({}).where('_id').nin(movie.cast)
+      console.log(pickup);
+      res.render('pickups/show', {
+        pickup
+      });
+    });
+  });
+}*/

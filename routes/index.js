@@ -11,7 +11,11 @@ router.get('/new', pickupsController.newForm);
 
 router.get('/soccer', pickupsController.showSport);
 
+router.get('/show/:id', pickupsController.showGame);
+
 router.post('/soccer', isLoggedIn, pickupsController.createNew);
+
+router.delete('/show/:id', pickupsController.deleteGame);
 
 
 function isLoggedIn(req, res, next) {

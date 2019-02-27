@@ -4,13 +4,13 @@
 <main>
   <!-- forEach for all active pickups in sport -->
   <% pickup.forEach(function (p) { %>
-  <a href="/pickups/p._id needs squids once func written">
+  <a href="/show/<%= p._id %>">
   <div class="pickup">
     <div class="pickupMap">
       <%= p.location %>
     </div>
     <div class="timeStamp">
-      <%= p.timestamps %>
+      <%= p.createdAt %>
     </div>
     <div class="numPlayers">
       <%= p.numOriginalPlayers + p.rsvp.length %>
