@@ -7,7 +7,7 @@
 
     <div class="leftShow">
       <div class="comments">
-        Host Comments: <%= pickup.hostComments %>
+        Host Comments <%= pickup.hostComments %>
       </div>
       <div class="timestampShow">
          Game Started: <%= pickup.createdAt %>
@@ -15,7 +15,11 @@
       <div class="numPlayersShow">
         <%= pickup.numOriginalPlayers + pickup.rsvp.length %>
       </div>
-
+      <div class="playersJoined">
+        <select class="playersJoined" name="Others Playing">
+          <%= pickup.rsvp %>
+        </select>
+      </div>
     </div>
     <div class="rightShow">
       <div class="showMap">
@@ -27,19 +31,8 @@
     </div>
 
   </div>
-<form class="" action="/show/<%=pickup._id %>" method="POST">
-  <!-- if user.id !== host.id show button, pass user.id into rsvp list -->
-  <input type="submit" value="Join Pickup" >
+<form class="" action="/show/<%=_id %>?_method=DELETE" method="DELETE">
+  <input type="submit" value="Cancel Pickup" >
 </form>
-
-<div class="commentForm">
-  <label for="">Your comment</label>
-  <input type="text" name="otherComments" value="has joined the game">
-  <input type="submit" name="otherComments" value="">
-  <div class="comments">
-    Host Comments: <%= pickup.hostComments %>
-
-  </div>
-</div>
 
 <%- include('../partials/footer') %>

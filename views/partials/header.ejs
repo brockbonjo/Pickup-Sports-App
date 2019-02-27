@@ -24,11 +24,15 @@
       </div>
       <div class="navBar">
         <!-- EJS if logged in: -->
-         <a href="#">My Games</a>
+        <% if (user) { %>
+          <a href="/user/">Profile</a>
+        <% } else { %>
+          add in code to change class to hide
+        <% } %>
       </div>
       <div class="logout">
         	<% if (user) { %>
-        		<a href="/logout">Log Out</a>
+        		<a href="/">Log Out</a>
         	<% } else { %>
         		<a href="/auth/google">Login with Google</a>
         	<% } %>

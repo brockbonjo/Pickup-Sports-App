@@ -2,11 +2,14 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 
+
+
 var pickUpSchema = new mongoose.Schema({
   sport: { type: String, required: true },
   location: { type: String, required: true },
   host: [{ type: Schema.Types.ObjectId, ref: 'Player' }],
   hostComments: { type: String },
+  otherComments: { type: String },
   numOriginalPlayers: { type: Number, required: true, default: 1 },
   rsvp: [{ type: Schema.Types.ObjectId, ref: 'Player' }],
 /*  Need to add location (DD or Gmaps)*/

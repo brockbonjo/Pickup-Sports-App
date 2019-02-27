@@ -17,6 +17,10 @@ router.post('/soccer', isLoggedIn, pickupsController.createNew);
 
 router.delete('/show/:id', pickupsController.deleteGame);
 
+router.get('/user/', pickupsController.showProfile)
+
+router.post('/show/:id', pickupsController.joinGame);
+
 
 function isLoggedIn(req, res, next) {
   if (req.isAuthenticated()) return next();
