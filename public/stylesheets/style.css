@@ -61,6 +61,7 @@ nav > a:hover {
 .dropdown {
   float: left;
   overflow: hidden;
+  border-right: 1px solid black;
 }
 
 .dropdown:hover .dropdown-content {

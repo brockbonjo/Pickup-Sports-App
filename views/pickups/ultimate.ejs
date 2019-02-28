@@ -1,0 +1,25 @@
+<%- include('../partials/header') %>
+
+
+<main>
+  <!-- forEach for all active pickups in sport -->
+  <% pickup.forEach(function (p) { %>
+  <a href="/show/<%= p._id %>">
+  <div class="pickup">
+    <div class="pickupMap">
+      <%= p.location %>
+    </div>
+    <div class="timeStamp">
+      Started: <%= p.createdAt %>
+    </div>
+    <div class="numPlayers">
+      <span class="count">Players Joined: <%= p.numOriginalPlayers + p.rsvp.length %></span>
+    </div>
+  </div>
+  </a>
+  <% }) %>
+
+</main>
+
+
+<%- include('../partials/footer') %>

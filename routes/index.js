@@ -10,6 +10,8 @@ router.get('/', pickupsController.allSports);
 router.get('/new', pickupsController.newForm);
 
 router.get('/soccer', pickupsController.showSoccer);
+router.get('/ultimate', pickupsController.showUltimate);
+router.get('/football', pickupsController.showSoccer);
 
 router.get('/show/:id', pickupsController.showGame);
 
@@ -51,6 +53,7 @@ router.get('/oauth2callback', passport.authenticate('google',
 
 //log out Routes
 router.get('/logout', function(req, res) {
+  console.log(req.logout);
   req.logout();
   res.redirect('/');
 });

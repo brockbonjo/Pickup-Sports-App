@@ -7,6 +7,8 @@ module.exports = {
   newForm,
   createNew,
   showSoccer,
+  showUltimate,
+  showFootball,
   showGame,
   deleteGame,
   showProfile,
@@ -19,10 +21,35 @@ function addMap() {
 
 }
 
+//probably delete this
+function deleteGame(req, res) {
+  Pickup.findOne({'_id': req.params.id},
+  function (err, pickup) {
+    player.id(req.params.id).remove();
+    player.save(function (err) {
+      res.render('/pickups/soccer');
+    });
+  });
+}
+
 function showSoccer(req, res) {
   console.log(req.params.sport);
-  Pickup.find({ }).sort('-createdAt').exec(function (err, pickup) {
+  Pickup.find({ sport: 'soccer' }).sort('-createdAt').exec(function (err, pickup) {
     res.render('pickups/soccer', { user: req.user, pickup: pickup });
+  });
+};
+
+function showUltimate(req, res) {
+  console.log(req.params.sport);
+  Pickup.find({ sport: 'frisbee' }).sort('-createdAt').exec(function (err, pickup) {
+    res.render('pickups/ultimate', { user: req.user, pickup: pickup });
+  });
+};
+
+function showFootball(req, res) {
+  console.log(req.params.sport);
+  Pickup.find({ sport: 'football' }).sort('-createdAt').exec(function (err, pickup) {
+    res.render('pickups/football', { user: req.user, pickup: pickup });
   });
 };
 
@@ -125,11 +152,18 @@ function createNew(req, res) {
   var player = req.user;
   player.currentGame.push(req.body);
   player.save(function (err) {
-    pickup.host = player;
-    Pickup.find({}).sort('-createdAt').exec(function (err, pickup) {
-      res.render('pickups/soccer', { user: req.user, pickup: pickup });
+      pickup.host = player;
+      if (pickup.sport == 'frisbee') {
+        Pickup.find({ sport: pickup.sport }).sort('-createdAt').exec(function (err, pickup) {
+          res.render('pickups/ultimate', { user: req.user, pickup: pickup });
+        });} else if (pickup.sport == 'football') {
+        Pickup.find({ sport: pickup.sport }).sort('-createdAt').exec(function (err, pickup) {
+          res.render('pickups/football', { user:   req.user, pickup: pickup });
+        });} else if (pickup.sport == 'soccer') {
+        Pickup.find({ sport: pickup.sport }).sort('-createdAt').exec(function (err, pickup) {
+          res.render('pickups/soccer', { user:   req.user, pickup: pickup });
+        });}
     });
-  });
 }
 
 function showGame(req, res) {
@@ -150,20 +184,8 @@ function showGame(req, res) {
 function newForm(req, res, next) {
   //need to hide if not logged in
   Player.findById(req.user._id).exec(function (err, player) {
-    res.render('pickups/new', { user: req.user, player: player });
+    res.render('pickups/new', { user: req.user,
+      player: player,
+      pickup: req.body });
   });
 };
-
-
-
-
-//probably delete this
-function deleteGame(req, res) {
-  Pickup.findOne({'_id': req.params.id},
-  function (err, pickup) {
-    player.id(req.params.id).remove();
-    player.save(function (err) {
-      res.render('/pickups/soccer');
-    });
-  });
-}

@@ -18,26 +18,23 @@
           Choose New Sport
         </div>
       </a>
-      <!--<a href="/soccer">-->
         <div class="navBar dropdown">
           <button class="dropbtn">
             Find a Pickup
             <i class="fa fa-caret-down"></i>
           </button>
           <div class="dropdown-content">
-            <a href="sport/soccer">Soccer</a>
-            <a href="sport/ultimate">Ultimate</a>
-            <a href="sport/football">Football</a>
+            <a href="/soccer">Soccer</a>
+            <a href="/ultimate">Ultimate</a>
+            <a href="/football">Football</a>
           </div>
         </div>
-      <!--</a> <!--/pickups/sport/:id-->
+      <% if (user) { %>
       <a href="/new">
         <div class="navBar">
           Make New Pickup
         </div>
       </a>
-      <!-- EJS if logged in: -->
-      <% if (user) { %>
       <a href="/profile/<%= user._id %>">
         <div class="navBar">
           Profile
@@ -47,7 +44,7 @@
 
         <% } %>
       <% if (user) { %>
-      <a href="/" class="logout">
+      <a href="/logout" class="logout">
         <div >
         		Log Out
         </div>
