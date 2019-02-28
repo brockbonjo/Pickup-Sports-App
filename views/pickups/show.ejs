@@ -27,19 +27,31 @@
     </div>
 
   </div>
+
+<!-- join form -->
+
 <form class="" action="/show/<%=pickup._id %>" method="POST">
   <!-- if user.id !== host.id show button, pass user.id into rsvp list -->
   <input type="submit" value="Join Pickup" >
 </form>
 
+<!-- comment form -->
+
 <div class="commentForm">
-  <label for="">Your comment</label>
-  <input type="text" name="otherComments" value="has joined the game">
-  <input type="submit" name="otherComments" value="">
+  <form class="" action="/show/<%=pickup._id %>/comment" method="POST">
+    <label for="">Your comment</label>
+    <input type="text" name="info" value="Joe's crab shack">
+    <input type="submit" value="Post Comment">
+  </form>
+</div>
+<br>
+<br>
   <div class="comments">
     Host Comments: <%= pickup.hostComments %>
+    <br>
+
+    Player Comments:  <%=   %>
 
   </div>
-</div>
 
 <%- include('../partials/footer') %>

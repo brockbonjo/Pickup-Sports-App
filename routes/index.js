@@ -21,6 +21,8 @@ router.get('/user/', pickupsController.showProfile)
 
 router.post('/show/:id', pickupsController.joinGame);
 
+router.post('/show/:id/comment', pickupsController.addComment);
+
 
 function isLoggedIn(req, res, next) {
   if (req.isAuthenticated()) return next();

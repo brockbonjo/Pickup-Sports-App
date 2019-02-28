@@ -13,29 +13,44 @@
       <img src="./images/soccer-ball-on-the-goal-sport-web-header2.jpg" alt="">
     </div>
     <nav>
-      <div class="navBar">
-        <a href="/">Choose New Sport</a>
-      </div>
-      <div class="navBar">
-        <a href="/soccer">Find a Pickup</a> <!--/pickups/sport/:id-->
-      </div>
-      <div class="navBar">
-        <a href="/new">Make New Pickup</a>
-      </div>
-      <div class="navBar">
-        <!-- EJS if logged in: -->
-        <% if (user) { %>
-          <a href="/user/">Profile</a>
+      <a href="/">
+        <div class="navBar">
+          Choose New Sport
+        </div>
+      </a>
+      <a href="/soccer">
+        <div class="navBar">
+          Find a Pickup
+        </div>
+      </a> <!--/pickups/sport/:id-->
+      <a href="/new">
+        <div class="navBar">
+          Make New Pickup
+        </div>
+      </a>
+      <!-- EJS if logged in: -->
+      <% if (user) { %>
+      <a href="/user/">
+        <div class="navBar">
+          Profile
+        </div>
+      </a>
         <% } else { %>
-          add in code to change class to hide
+
         <% } %>
+      <% if (user) { %>
+      <a href="/" class="logout">
+        <div >
+        		Log Out
+        </div>
+      </a>
+    	<% } else { %>
+      <a href="/auth/google" class="logout">
+        <div class="navBar">
+          Login with Google
+        </div>
+      </a>
+      <% } %>
       </div>
-      <div class="logout">
-        	<% if (user) { %>
-        		<a href="/">Log Out</a>
-        	<% } else { %>
-        		<a href="/auth/google">Login with Google</a>
-        	<% } %>
-      </div>
-    </header>
-  </nav>
+    </nav>
+  </header>

@@ -9,7 +9,7 @@ var pickUpSchema = new mongoose.Schema({
   location: { type: String, required: true },
   host: [{ type: Schema.Types.ObjectId, ref: 'Player' }],
   hostComments: { type: String },
-  otherComments: { type: String },
+  otherComments: [],
   numOriginalPlayers: { type: Number, required: true, default: 1 },
   rsvp: [{ type: Schema.Types.ObjectId, ref: 'Player' }],
 /*  Need to add location (DD or Gmaps)*/
