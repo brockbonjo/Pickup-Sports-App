@@ -32,6 +32,16 @@ nav {
   border: 2px solid black;
   height: 50px;
   z-index: 1;
+  overflow: hidden;
+}
+
+.dropbtn {
+  background-color:  #0d19a3;
+  color: #15db95;
+  border: none;
+  font-size: 18px;
+  padding: 0 5px;
+  padding-bottom: 25px;
 }
 
 nav > a {
@@ -47,6 +57,43 @@ nav > a:hover {
   background-color: #E4C580;
   color: #0d19a3;
 }
+
+.dropdown {
+  float: left;
+  overflow: hidden;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+  background-color: #E4C580;
+  color: #0d19a3;
+}
+
+.dropdown-content > a:hover {
+  background-color: #E4C580;
+  color: #0d19a3;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  width: 120px;
+  z-index: 1;
+  border: 1px solid black;
+}
+
+.dropdown-content a {
+  float: none;
+  background-color:  #0d19a3;
+  display: block;
+  color: #15db95;
+  border: none;
+  font-size: 18px;
+  padding: 0 5px;
+  border: 1px solid black;
+  height: 35px;
+}
+
 
 .logout {
   margin-left: auto;
@@ -86,6 +133,7 @@ main {
   grid-area: main;
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-around;
 }
 label {
   background-color: grey;
@@ -95,29 +143,35 @@ label {
 
 /* index styling */
 .pickup {
-  width: 250px;
-  padding: 20px;
+  width: 300px;
+  margin: 10px auto;
   display: grid;
-  grid-template-columns: 125px 125px;
+  grid-template-columns: 150px 150px;
   grid-template-rows: 200px 50px;
   grid-template-areas:
     "pickupMap pickupMap"
     "timestamp numPlayers"
 }
 .pickupMap {
-  display: grid;
+  text-align: center;
   grid-area: pickupMap;
   border: 1px solid black;
 }
 .timeStamp {
-  display: grid;
   grid-area: timestamp;
   border: 1px solid black;
 }
 .numPlayers {
-  display: grid;
   grid-area: numPlayers;
   border: 1px solid black;
+  text-align: right;
+}
+.count{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 600;
+  font-size: 16px;
 }
 
 
@@ -226,4 +280,23 @@ label {
 
 .newMap {
   grid-area: map;
+}
+
+footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  color: white;
+  text-align: center;
+}
+
+.footerDiv {
+  background-color: #E4C580;
+  color: #0d19a3;
+  width: 1fr;
+}
+
+.map {
+  width: 250px;
 }

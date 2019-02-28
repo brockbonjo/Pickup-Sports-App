@@ -9,7 +9,7 @@ router.get('/', pickupsController.allSports);
 
 router.get('/new', pickupsController.newForm);
 
-router.get('/soccer', pickupsController.showSport);
+router.get('/soccer', pickupsController.showSoccer);
 
 router.get('/show/:id', pickupsController.showGame);
 
@@ -22,6 +22,8 @@ router.get('/user/', pickupsController.showProfile)
 router.post('/show/:id', pickupsController.joinGame);
 
 router.post('/show/:id/comment', pickupsController.addComment);
+
+router.get('/profile/:id', pickupsController.showProfile);
 
 
 function isLoggedIn(req, res, next) {

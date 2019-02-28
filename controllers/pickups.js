@@ -6,13 +6,42 @@ module.exports = {
   allSports,
   newForm,
   createNew,
-  showSport,
+  showSoccer,
   showGame,
   deleteGame,
   showProfile,
   joinGame,
   addComment,
+  showProfile,
 };
+
+function addMap() {
+
+}
+
+function showSoccer(req, res) {
+  console.log(req.params.sport);
+  Pickup.find({ }).sort('-createdAt').exec(function (err, pickup) {
+    res.render('pickups/soccer', { user: req.user, pickup: pickup });
+  });
+};
+
+function showProfile(req, res) {
+  Player.findById(req.user._id, function(err, player) {
+    console.log(player.pastGames);
+    res.render('pickups/profile', {
+      user: req.user._id,
+      player,
+    });
+  });
+}
+
+// function showProfile(req, res) {
+//   Player.findById(req.user._id)
+//   res.render('pickups/profile', {
+//     user: req.user._id
+//   })
+// }
 
 function addComment(req, res) {
   // console.log(req.body);
@@ -73,25 +102,9 @@ function joinGame(req, res) {
   });
 }
 
-function showProfile(req, res) {
-  Player.findById(req.user._id)
-  res.render('pickups/profile', {
-    user: req.user._id
-  })
-}
 
-function showGame(req, res) {
-  //need to add player find by id to allow for rsvp
-  Pickup.findById(req.params.id)
-  .populate('rsvp').exec(function(err, pickup, guy) {
-    // Performer.find({}).where('_id').nin(movie.cast)
-    res.render('pickups/show', {
-      pickup: pickup,
-      user: req.params.id,
-      /*playerName: guy,*/
-    });
-  });
-}
+
+
 
 function allSports(req, res, next) {
   res.render('pickups/landingPage', { user: req.user });
@@ -119,12 +132,20 @@ function createNew(req, res) {
   });
 }
 
-
-function showSport(req, res) {
-  Pickup.find({}).sort('-createdAt').exec(function (err, pickup) {
-    res.render('pickups/soccer', { user: req.user, pickup: pickup });
+function showGame(req, res) {
+  //need to add player find by id to allow for rsvp
+  Pickup.findById(req.params.id)
+  .populate('rsvp').exec(function(err, pickup, guy) {
+    // Performer.find({}).where('_id').nin(movie.cast)
+    res.render('pickups/show', {
+      pickup: pickup,
+      user: req.params.id,
+      /*playerName: guy,*/
+    });
   });
-};
+}
+
+
 
 function newForm(req, res, next) {
   //need to hide if not logged in

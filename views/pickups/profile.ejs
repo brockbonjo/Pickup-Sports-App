@@ -1,38 +1,73 @@
 <%- include('../partials/header') %>
 
 
-<main class="show">
+<main class="profile">
+  <h2>Welcome, <%=player.name%></h2>
+
+  <h4>Your next pickup is:</h4>
+  <table>
+    <thead>
+    <th>Sport</th>
+    <th>Location</th>
+    <th>Date</th>
+    </thead>
+    <tbody>
+      <tr>
+        <td> <%=/*player.currentGame*/ %> </td>
+        <td> <%=/*p.location*/ %> </td>
+        <td> <%= /*p.date*/%> </td>
+      </tr>
+    <% /*});*/ %>
+    </tbody>
+  </table>
+</main>
 
   <div class="showDetails">
 
-    <div class="leftShow">
-      <div class="comments">
-        Host Comments <%= pickup.hostComments %>
+    <div class="showDetails">
+
+      <div class="leftShow">
+        <div class="comments">
+          Host Comments: <%= /*pickup.hostComments*/ %>
+        </div>
+        <div class="timestampShow">
+           Game Started: <%= /*pickup.createdAt*/ %>
+        </div>
+        <div class="numPlayersShow">
+          <%= /*pickup.numOriginalPlayers + pickup.rsvp.length*/ %>
+        </div>
+
       </div>
-      <div class="timestampShow">
-         Game Started: <%= pickup.createdAt %>
+      <div class="rightShow">
+        <div class="showMap">
+          <%= /*pickup.location*/ %>
+        </div>
+        <div class="directions">
+          Directions
+        </div>
       </div>
-      <div class="numPlayersShow">
-        <%= pickup.numOriginalPlayers + pickup.rsvp.length %>
-      </div>
-      <div class="playersJoined">
-        <select class="playersJoined" name="Others Playing">
-          <%= pickup.rsvp %>
-        </select>
-      </div>
-    </div>
-    <div class="rightShow">
-      <div class="showMap">
-        <%= pickup.location %>
-      </div>
-      <div class="directions">
-        Directions
-      </div>
+
     </div>
 
   </div>
-<form class="" action="/show/<%=_id %>?_method=DELETE" method="DELETE">
-  <input type="submit" value="Cancel Pickup" >
-</form>
+
+  <h4>Your past pickups: </h4>
+  <table>
+    <thead>
+    <th>Sport</th>
+    <th>Location</th>
+    <th>Date</th>
+    </thead>
+    <tbody>
+      <% player.pastGames.forEach(function (p) { %>
+      <tr>
+        <td> <%= p.sport %> </td>
+        <td> <%= p.location %> </td>
+        <td> <%= p.date%> </td>
+      </tr>
+    <% }); %>
+    </tbody>
+  </table>
+</main>
 
 <%- include('../partials/footer') %>

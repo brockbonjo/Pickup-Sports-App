@@ -12,7 +12,17 @@ var pickUpSchema = new mongoose.Schema({
   otherComments: [],
   numOriginalPlayers: { type: Number, required: true, default: 1 },
   rsvp: [{ type: Schema.Types.ObjectId, ref: 'Player' }],
-/*  Need to add location (DD or Gmaps)*/
+  // started: { type: String, default: function () {
+  //     var daysOfWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+  //     var d = new Date();
+  //     var n = d.getDay();
+  //     var day = daysOfWeek[n];
+  //     var hour = d.getHours();
+  //     var minute = d.getMinutes();
+  //     var time = new Date(day, hour, minute);
+  //     return time;
+  //   },
+  // },
 }, {
   timestamps: true,
 });
