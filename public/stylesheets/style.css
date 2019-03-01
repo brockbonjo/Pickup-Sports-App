@@ -160,6 +160,14 @@ label {
   text-align: center;
 }
 
+.makeNewExample {
+  width: 400px;
+}
+
+.commentExample {
+  width: 400px;
+}
+
 /* index styling */
 .pickup {
   width: 300px;
