@@ -14,7 +14,6 @@ module.exports = {
   showProfile,
   joinGame,
   addComment,
-  showProfile,
 };
 
 function addMap() {
@@ -55,7 +54,7 @@ function showFootball(req, res) {
 
 function showProfile(req, res) {
   Player.findById(req.user._id, function(err, player) {
-    console.log(player.pastGames);
+    console.log(player.avatar);
     res.render('pickups/profile', {
       user: req.user._id,
       player,
@@ -82,11 +81,14 @@ function addComment(req, res) {
     // console.log(comment + ' after find');
     pickup.otherComments.push(comment);
     pickup.save;
+    req.user.save;
     console.log(pickup.otherComments);
-    res.render('pickups/show', {
-      pickup,
-      user: req.user.id,
-    });
+    res.redirect(`/show/${pickup._id}`
+    // , {
+    //   pickup,
+    //   user: req.user.id,
+    // }
+  );
   });
 }
 
@@ -171,7 +173,7 @@ function showGame(req, res) {
   Pickup.findById(req.params.id)
   .populate('rsvp').exec(function(err, pickup, guy) {
     // Performer.find({}).where('_id').nin(movie.cast)
-    res.render('pickups/show', {
+    res.render(`pickups/show`, {
       pickup: pickup,
       user: req.params.id,
       /*playerName: guy,*/

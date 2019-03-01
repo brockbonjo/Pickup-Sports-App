@@ -2,10 +2,8 @@
 
 
 <main class="profile">
-  <h2>Welcome, <%=player.name%></h2>
 
-  <h4>Your next pickup is:</h4>
-  <table>
+  <!-- <table>
     <thead>
     <th>Sport</th>
     <th>Location</th>
@@ -19,37 +17,42 @@
       </tr>
     <% /*});*/ %>
     </tbody>
-  </table>
+  </table> -->
 </main>
+<h2 class="profileWelcome">Welcome, <%=player.name%></h2>
+<img src="<%= player.avatar %>" alt="">
 
-  <div class="showDetails">
 
-    <div class="showDetails">
+<div class="help">
+  <h4>Your next pickup is:</h4>
+  <div class="profileDetails">
 
-      <div class="leftShow">
-        <div class="comments">
-          Host Comments: <%= /*pickup.hostComments*/ %>
-        </div>
-        <div class="timestampShow">
-           Game Started: <%= /*pickup.createdAt*/ %>
-        </div>
-        <div class="numPlayersShow">
-          <%= /*pickup.numOriginalPlayers + pickup.rsvp.length*/ %>
-        </div>
-
+    <div class="leftShow">
+      <div class="comments">
+        Host Comments: <%= /*pickup.hostComments*/ %>
       </div>
-      <div class="rightShow">
-        <div class="showMap">
-          <%= /*pickup.location*/ %>
-        </div>
-        <div class="directions">
-          Directions
-        </div>
+      <div class="timestampShow">
+         Game Started: <%= /*pickup.createdAt*/ %>
+      </div>
+      <div class="numPlayersShow">
+        <%= /*pickup.numOriginalPlayers + pickup.rsvp.length*/ %>
       </div>
 
     </div>
+    <div class="rightShow">
+      <div class="showMap">
+        <%= /*pickup.location*/ %>
+      </div>
+      <div class="directions">
+        Directions
+      </div>
+    </div>
 
   </div>
+</div>
+
+
+
 
   <h4>Your past pickups: </h4>
   <table>

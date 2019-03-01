@@ -5,7 +5,7 @@ var Schema = mongoose.Schema;
 var commentSchema = new mongoose.Schema({
   player: { type: Schema.Types.ObjectId, ref: 'Player' },
   pickup: { type: Schema.Types.ObjectId, ref: 'pickUp' },
-  info: { type: String },
+  info: String,
 }, {
   timestamps: true,
 });
