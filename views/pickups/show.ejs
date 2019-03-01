@@ -49,9 +49,9 @@
   <div class="comments">
     Host Comments: <%= pickup.hostComments %>
     <br>
-
-    Player Comments:  <%=   %>
-
+    <% pickup.otherComments.forEach(function(p) { %>
+    Player Commented:  <%= p.info  %>
+    <% }) %>
   </div>
 
 <%- include('../partials/footer') %>

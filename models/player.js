@@ -10,7 +10,7 @@ var playerSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  // avatar: String,
+  avatar: { type: String },
   googleId: {
     type: String,
     required: true,

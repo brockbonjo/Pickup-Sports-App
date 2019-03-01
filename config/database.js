@@ -1,9 +1,11 @@
 var mongoose = require('mongoose');
 
-mongoose.connect(process.env.DATABASE_URL);
+mongoose.connect(process.env.DATABASE_URL || 'mongodb://localhost/');
 
 // database connection event
-mongoose.connection.on('connected', function () {
+var db = mongoose.connection;
+
+db.on('connected', function () {
   console.log(`Mongoose connected to: ${process.env.DATABASE_URL}`);
 });
 

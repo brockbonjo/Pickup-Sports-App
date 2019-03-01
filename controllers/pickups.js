@@ -71,42 +71,42 @@ function showProfile(req, res) {
 // }
 
 function addComment(req, res) {
-  // console.log(req.body);
-  // console.log(req.user);
-  // console.log(req.params.id);
-  // var comment = new Comment({
-  //   content: req.body,
-  //   player: req.user._id,
-  //   pickup: req.params.id,
-  // });
-  // comment.save(function (err) {});
   var comment = new Comment(req.body);
   comment.info = req.body;
   comment.player = req.user.id;
   comment.pickup = req.params.id;
   comment.save;
-
+  console.log(comment);
   Pickup.findById(req.params.id, function (err, pickup) {
-    Comment.find({ _id: '5c7784c5344f1100ccfb2518' }, function (err, comments) {
-      /*console.log(comment);*/
-      console.log(comments + ' after find');
-      res.render('pickups/show', {
-        pickup,
-        user: req.params.id,
-        comments,
-      });
-
+    // console.log(req.params.id);
+    // console.log(comment + ' after find');
+    pickup.otherComments.push(comment);
+    pickup.save;
+    console.log(pickup.otherComments);
+    res.render('pickups/show', {
+      pickup,
+      user: req.user.id,
     });
   });
 }
 
-  // Comment.findById(req.params.id, function (err, pickup) {
-  //     res.render('pickups/show', {
-  //       pickup: pickup,
-  //       user: req.params.id,
-  //     });
-  //   });
-
+// function addComment(req, res) {
+//   var comment = new Comment(req.body);
+//   comment.info = req.body;
+//   comment.player = req.user.id;
+//   comment.pickup = req.params.id;
+//   comment.save;
+//   console.log(comment);
+//
+//   Pickup.findByIdAndUpdate(req.params.id, function (pickup) {
+//     pickup.otherComments.push(comment);
+//     console.log(pickup.otherComments);
+//     res.render('pickups/show', {
+//       pickup,
+//       user: req.user.id,
+//     });
+//   });
+// }
 
 function joinGame(req, res) {
   var player = req.user;
