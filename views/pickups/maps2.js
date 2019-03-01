@@ -1,3 +1,36 @@
+<main>
+  <!-- forEach for all active pickups in sport -->
+  <% pickup.forEach(function (p) { %>
+  <a href="/show/<%= p._id %>">
+  <div class="pickup">
+    <div class="pickupMap">
+      <% if (p.location == 'ZilkerPark') {%>
+      <%= <img src="https://maps.googleapis.com/maps/api/staticmap?center=30.267340058514105,-97.76864196442546&zoom=12&size=300x200&key=AIzaSyBKZZSoBeHigMVBfIyGZHEZqqLPiGJkU38" alt=""> %>
+      <% } else if (p.location == 'UT Fields') { %>
+      <%= <img src="https://maps.googleapis.com/maps/api/staticmap?center=30.281161296200004,-97.7344150433724&zoom=12&size=300x200&key=AIzaSyBKZZSoBeHigMVBfIyGZHEZqqLPiGJkU38" alt=""> %>
+      <% } else if (p.location == 'Onion Creek') { %>
+      <%= <img src="https://maps.googleapis.com/maps/api/staticmap?center=30.176359699426296,-97.7419014190873&zoom=12&size=300x200&key=AIzaSyBKZZSoBeHigMVBfIyGZHEZqqLPiGJkU38" alt=""> %>
+      <% } %>
+    </div>
+    <div class="timeStamp">
+      Started: <%= p.createdAt %>
+    </div>
+    <div class="numPlayers">
+      <span class="count">Players Joined: <%= p.numOriginalPlayers + p.rsvp.length %></span>
+    </div>
+  </div>
+  </a>
+  <% }) %>
+
+</main>
+
+zilker
+https://maps.googleapis.com/maps/api/staticmap?center=30.267340058514105,-97.76864196442546&zoom=12&size=300x200&key=AIzaSyBKZZSoBeHigMVBfIyGZHEZqqLPiGJkU38
+Onion Creek
+https://maps.googleapis.com/maps/api/staticmap?center=30.176359699426296,-97.7419014190873&zoom=12&size=300x200&key=AIzaSyBKZZSoBeHigMVBfIyGZHEZqqLPiGJkU38
+UT Fields
+https://maps.googleapis.com/maps/api/staticmap?center=30.281161296200004,-97.7344150433724&zoom=12&size=300x200&key=AIzaSyBKZZSoBeHigMVBfIyGZHEZqqLPiGJkU38
+
 <script>
     function initMap(){
       // Map options

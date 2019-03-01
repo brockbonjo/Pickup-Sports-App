@@ -62,12 +62,6 @@ function showProfile(req, res) {
   });
 }
 
-// function showProfile(req, res) {
-//   Player.findById(req.user._id)
-//   res.render('pickups/profile', {
-//     user: req.user._id
-//   })
-// }
 
 function addComment(req, res) {
   var comment = new Comment(req.body);
@@ -83,11 +77,10 @@ function addComment(req, res) {
     pickup.save;
     req.user.save;
     console.log(pickup.otherComments);
-    res.redirect(`/show/${pickup._id}`
-    // , {
-    //   pickup,
-    //   user: req.user.id,
-    // }
+    res.render(`pickups/show`, {
+      pickup,
+      user: req.user.id,
+    }
   );
   });
 }

@@ -1,66 +1,65 @@
 <%- include('../partials/header') %>
+<main id="show">
 
 
-<main class="show">
-
+<div class="helpShow">
   <div class="showDetails">
 
     <div class="leftShow">
       <div class="comments">
-        Host Comments: <%= pickup.hostComments %>
+        Host Comments: <br><%= pickup.hostComments %>
       </div>
       <div class="timestampShow">
          Game Started: <%= pickup.createdAt %>
       </div>
       <div class="numPlayersShow">
-        <%= pickup.numOriginalPlayers + pickup.rsvp.length %>
+        Players RSVPd: <br><%= pickup.numOriginalPlayers + pickup.rsvp.length %>
       </div>
-
+      <div class="join">
+        <form  action="/show/<%=pickup._id %>" method="POST">
+          <!-- if user.id !== host.id show button, pass user.id into rsvp list -->
+          <input class="joinButton" type="submit" value="Click to RSVP" >
+        </form>
+      </div>
     </div>
     <div class="rightShow">
       <div class="showMap">
-        <%= pickup.location %>
-      </div>
-      <div class="directions">
-        Directions
+        <img src="https://maps.googleapis.com/maps/api/staticmap?center=30.2672,-97.7431&zoom=12&size=300x200&key=AIzaSyBKZZSoBeHigMVBfIyGZHEZqqLPiGJkU38" alt="">
       </div>
     </div>
-    <div class="join">
-      <form  action="/show/<%=pickup._id %>" method="POST">
-        <!-- if user.id !== host.id show button, pass user.id into rsvp list -->
-        <input class="joinButton" type="submit" value="Click to RSVP" >
-      </form>
-    </div>
-
   </div>
+</div>
+
 
 <!-- comment form -->
 
 <!-- <div class="commentTable"> -->
-  <table class="table">
-    <tr>
-      <th>Player</th>
-      <th>Comment</th>
-    </tr>
-    <tr>
-      <td>Host Comments: </td>
-      <td> <%= pickup.hostComments %></td>
-    </tr>
-    <% pickup.otherComments.forEach(function(p) { %>
-    <tr>
-      <td class="com">Player comment:</td>
-      <td class="post"><%=p.info%></td>
-    </tr>
-    <% }) %>
-    <tr>
-      <form class="" action="/show/<%=pickup._id %>/comment" method="POST">
-      <td><input type="submit" value="Add Comment"></td>
-      <td><input type="text" name="info" value="Joe's crab shack"></td>
-      </form>
-    </tr>
-  </table>
+<table class="table">
+  <tr>
+    <th>Player</th>
+    <th>Comment</th>
+  </tr>
+  <div class="showcomments">
+  <tr>
+    <td>Host Comments: </td>
+    <td> <%= pickup.hostComments %></td>
+  </tr>
+  <% pickup.otherComments.forEach(function(p) { %>
+  <tr>
+    <td class="com">Player commented:</td>
+    <td class="post"><%=p.info%></td>
+  </tr>
+  <% }) %>
+  <tr>
+    <form class="" action="/show/<%= pickup._id %>/comment" method="POST">
+    <td><input type="submit" value="Add Comment"></td>
+    <td><input type="text" name="info" value="Joe's crab shack"></td>
+    </form>
+  </tr>
+  </div>
+</table>
+</main>
 
-<!-- </div> -->
 
 
 <%- include('../partials/footer') %>

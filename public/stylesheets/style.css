@@ -19,7 +19,7 @@ header {
   /*change*/
   background-color: black;
 }
-img {
+.banner {
   /*change*/
   display: inline-block;
   position: relative;
@@ -165,14 +165,14 @@ label {
   width: 300px;
   margin: 10px auto;
   display: grid;
+  border: 1px solid black;
   grid-template-columns: 150px 150px;
   grid-template-rows: 200px 50px;
   grid-template-areas:
     "pickupMap pickupMap"
     "timestamp numPlayers"
 }
-.pickupMap {
-  text-align: center;
+.pleaseWork {
   grid-area: pickupMap;
   border: 1px solid black;
 }
@@ -204,6 +204,7 @@ label {
   margin-left: 15%;
 }
 
+
 .profileDetails {
   margin: 20px auto;
   /*float: right;*/
@@ -217,53 +218,45 @@ label {
 
 
 /* show Pickup styling */
+
+.helpShow{
+  width: 500px;
+  margin: 0;
+}
+
 .showDetails {
-  margin: 20px;
+  margin: 20px 0;
   display: grid;
   background-color: white;
-  grid-template-columns: 250px 250px 100px;
+  grid-template-columns: 250px 300px;
   grid-template-areas:
-    "leftShow rightShow join"
+    "leftShow rightShow"
 }
 
 
-.join {
-  display: grid;
-}
 
-.joinButton {
-  width: 100px;
-  height: 100%;
-  border: none;
-  overflow-wrap: normal;
-}
-
-.joinButton:hover {
-  color: white;
-  background-color: grey;
-}
 
 .rightShow {
   border-top: 1px solid black;
   border-right: 1px solid black;
   border-bottom: 1px solid black;
   display: grid;
-  grid-template-columns: 250px;
-  grid-template-rows: 150px 50px;
+  grid-template-columns: 300px;
+  grid-template-rows: 200px;
   grid-template-areas:
     "map"
-    "directions"
+
 }
 .leftShow {
   border: 1px solid black;
   display: grid;
-  grid-template-columns: 250px;
+  grid-template-columns: 249px;
   grid-template-rows: 50px 50px 50px 50px;
   grid-template-areas:
     "comments"
     "timestamp"
     "numPlayers"
-    "playersJoined"
+    "join"
 }
 .comments {
   grid-area: comments;
@@ -277,9 +270,22 @@ label {
   grid-area: numPlayers;
   border-bottom: 1px solid black;
 }
-.playersJoined {
-  grid-area: playersJoined;
+.join {
+  grid-area: join;
+  height: 48px;
 }
+
+.joinButton {
+  width: 248px;
+  height: 50px;
+  border: none;
+}
+
+.joinButton:hover {
+  color: white;
+  background-color: grey;
+}
+
 .showMap {
   grid-area: map;
 }
@@ -294,23 +300,31 @@ label {
 
 }
 table {
-
+  width: 500px;
+  margin-top: 20px;
+  height: 200px;
+  overflow: scroll;
+  border: 1px solid black;
+  /*margin-left: 18%;*/
 }
 tr {
   border: 1px solid black;
+  height: 20px;
+  padding: 0;
+}
+
+#show {
+  /*margin-left: 15%*/
+}
+
+.showcomments {
+
 }
 
 td {
 
 }
-.com {
-  width: 150px;
-}
 
-.post {
-  width: 450px;
-  border: 1px solid black;
-}
 
 .commentForm {
 
@@ -370,7 +384,7 @@ td {
 }
 
 footer {
-  position: fixed;
+
   left: 0;
   bottom: 0;
   width: 100%;
