@@ -11,7 +11,7 @@ router.get('/new', pickupsController.newForm);
 
 router.get('/soccer', pickupsController.showSoccer);
 router.get('/ultimate', pickupsController.showUltimate);
-router.get('/football', pickupsController.showSoccer);
+router.get('/football', pickupsController.showFootball);
 
 router.get('/show/:id', pickupsController.showGame);
 

@@ -34,6 +34,7 @@ function deleteGame(req, res) {
 function showSoccer(req, res) {
   console.log(req.params.sport);
   Pickup.find({ sport: 'soccer' }).sort('-createdAt').exec(function (err, pickup) {
+    console.log(pickup);
     res.render('pickups/soccer', { user: req.user, pickup: pickup });
   });
 };
@@ -41,6 +42,7 @@ function showSoccer(req, res) {
 function showUltimate(req, res) {
   console.log(req.params.sport);
   Pickup.find({ sport: 'frisbee' }).sort('-createdAt').exec(function (err, pickup) {
+    console.log(pickup);
     res.render('pickups/ultimate', { user: req.user, pickup: pickup });
   });
 };
@@ -48,13 +50,13 @@ function showUltimate(req, res) {
 function showFootball(req, res) {
   console.log(req.params.sport);
   Pickup.find({ sport: 'football' }).sort('-createdAt').exec(function (err, pickup) {
+    console.log(pickup);
     res.render('pickups/football', { user: req.user, pickup: pickup });
   });
 };
 
 function showProfile(req, res) {
   Player.findById(req.user._id, function(err, player) {
-    console.log(player.avatar);
     res.render('pickups/profile', {
       user: req.user._id,
       player,
@@ -162,14 +164,12 @@ function createNew(req, res) {
 }
 
 function showGame(req, res) {
-  //need to add player find by id to allow for rsvp
   Pickup.findById(req.params.id)
   .populate('rsvp').exec(function(err, pickup, guy) {
-    // Performer.find({}).where('_id').nin(movie.cast)
+    console.log(pickup);
     res.render(`pickups/show`, {
       pickup: pickup,
       user: req.params.id,
-      /*playerName: guy,*/
     });
   });
 }
