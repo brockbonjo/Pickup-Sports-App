@@ -69,12 +69,14 @@
             },*/
             ];
 
-
+            //sets all markers to active
             function setMapOnAll(map) {
               for (var i = 0; i < markers.length; i++) {
                 markers[i].setMap(map);
               }
             }
+
+            //sets old markers as null
             function clearMarkers() {
               setMapOnAll(null);
             }
@@ -84,33 +86,23 @@
                 map: map,
               });
             }
+
             //adds event listener for marker, lat/lon to form
             google.maps.event.addListener(map, 'click', function(event){
               clearMarkers();
               var lat = event.latLng.lat()
               var lng = event.latLng.lng()
+              //updates the form to pass to db
               document.getElementById('lat').value = lat;
               document.getElementById('lon').value = lng;
               var marker = new google.maps.Marker({
                 position: {lat: lat, lng: lng},
                 map: map,
               });
-              console.log(marker);
               markers.push(marker);
-              /*for(var i = 0; i < markers.length; i++) {
-                if (markers[i]) {
-                  pleaseWork(markers[i]);
-                }
-              }*/
-              // addMarker({coords:event.latLng});
             });
 
-            //TO DELETE. RUNS ON LOAD Only runs for what is in the above markers array
-            /*for(var i = 0; i < markers.length; i++) {
-              console.log(markers[i]);
-              addMarker(markers[i]);
-            }*/
-
+            //FUTURE DELETE
             function addMarker(props) {
               var marker = new google.maps.Marker({
                 position: props.coords,
