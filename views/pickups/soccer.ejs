@@ -1,37 +1,34 @@
 <%- include('../partials/header') %>
 
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCJPsnFimaA4YhK6htIku8Cz0gM10FtA1I&callback=initMap"> </script>
+<script   src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCJPsnFimaA4YhK6htIku8Cz0gM10FtA1I&callback=initMap"> </script>
 
 <main>
   <!-- forEach for all active pickups in sport -->
-  <% pickup.forEach(function (p) { ;%>
+  <% pickup.forEach(function (p, idx) { %>
+  <% console.log(p) %>
   <a href="/show/<%= p._id %>">
   <div class="pickup">
     <div class="rightNew">
       <div class="map">
         <div id="map"></div>
-          <%function initMap(p) {
+        <script id="map" type="text/javascript">
+          function initMap() {
+            console.log(<%=idx%>)
             var options = {
-              zoom: 10,
-              center: {lat: p.lat, lon: p.lon}
+              zoom: 12,
+              center: {lat: <%=p.lat%>, lng: <%=p.lon%> },
+              zoomControl: false,
+              streetViewControl: false,
+              mapTypeControl: false,
             }
-            var map = new google.maps.Map(document.getElementById('map'), options);
-
-            var markers = [{
-              coords: {lat: p.lat, lng: p.lon },
-              content: p.hostComments
-            },
-            ];
-            for(var i = 0; i < 1; i++) {
-              addMarker(markers[i]);
-            }
-
-           } %>
-
-
-
-
-
+            var map<%=idx%> = new google.maps.Map(document.getElementById("map"), options);
+            var marker = new google.maps.Marker({
+              position: {lat: <%=p.lat%>, lng: <%=p.lon%> },
+              map: map<%=idx%>
+            })
+          }
+          initMap();
+        </script>
       </div>
     </div>
     <div class="timeStamp">

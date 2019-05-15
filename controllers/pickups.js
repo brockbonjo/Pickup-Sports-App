@@ -34,7 +34,6 @@ function deleteGame(req, res) {
 function showSoccer(req, res) {
   console.log(req.params.sport);
   Pickup.find({ sport: 'soccer' }).sort('-createdAt').exec(function (err, pickup) {
-    console.log(pickup);
     res.render('pickups/soccer', { user: req.user, pickup: pickup });
   });
 };
@@ -42,7 +41,6 @@ function showSoccer(req, res) {
 function showUltimate(req, res) {
   console.log(req.params.sport);
   Pickup.find({ sport: 'frisbee' }).sort('-createdAt').exec(function (err, pickup) {
-    console.log(pickup);
     res.render('pickups/ultimate', { user: req.user, pickup: pickup });
   });
 };
@@ -50,7 +48,6 @@ function showUltimate(req, res) {
 function showFootball(req, res) {
   console.log(req.params.sport);
   Pickup.find({ sport: 'football' }).sort('-createdAt').exec(function (err, pickup) {
-    console.log(pickup);
     res.render('pickups/football', { user: req.user, pickup: pickup });
   });
 };
@@ -140,6 +137,7 @@ function createNew(req, res) {
   for (let key in req.body) {
     if (req.body[key] === '') delete req.body[key];
   }
+  console.log(req.body);
   //making new pickup from model
   var pickup = new Pickup(req.body);
   pickup.save(function (err) {

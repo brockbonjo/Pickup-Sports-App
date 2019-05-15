@@ -6,7 +6,7 @@ var Schema = mongoose.Schema;
 
 var pickUpSchema = new mongoose.Schema({
   sport: { type: String, required: true },
-  location: { type: String, required: true },
+  /*location: { type: String, required: true },*/
   lat: { type: Number, required: true },
   lon: { type: Number, required: true },
   host: [{ type: Schema.Types.ObjectId, ref: 'Player' }],
