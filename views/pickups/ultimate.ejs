@@ -10,7 +10,7 @@
   <div class="pickup">
     <div class="indexMap">
       <div class="map">
-        <div id="map"></div>
+        <div id="map<%=idx%>" style="height:100%;width:299px;"></div>
         <script id="map" type="text/javascript">
 
             var options = {
@@ -20,12 +20,12 @@
               streetViewControl: false,
               mapTypeControl: false,
             }
-            var map<%=idx%> = new google.maps.Map(document.getElementById("map"), options);
+            var map<%=idx%> = new google.maps.Map(document.getElementById(`map<%=idx%>`), options);
             var marker = new google.maps.Marker({
               position: {lat: <%=p.lat%>, lng: <%=p.lon%> },
               map: map<%=idx%>
             })
-
+            console.log(<%=idx%>);
 
         </script>
       </div>
