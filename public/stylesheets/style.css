@@ -114,10 +114,7 @@ a {
   text-decoration: none;
 }
 
-#map {
-  height: 200px;
-  width: 100%;
-}
+
 
 .welcome {
   width: 75%;
@@ -181,9 +178,15 @@ label {
     "pickupMap pickupMap"
     "timestamp numPlayers"
 }
-.pleaseWork {
+
+/*To Delete*/
+/*.pleaseWork {
   grid-area: pickupMap;
   border: 1px solid black;
+}*/
+.indexMap {
+  grid-area: pickupMap;
+
 }
 .timeStamp {
   grid-area: timestamp;
@@ -354,7 +357,7 @@ td {
   border-bottom: 1px solid black;
   display: grid;
   grid-template-columns: 250px;
-  grid-template-rows: 200px;
+  grid-template-rows: 250px;
   grid-template-areas:
     "map"
 }
@@ -408,5 +411,5 @@ footer {
 }
 
 .map {
-  width: 250px;
+  height: 100%;
 }
