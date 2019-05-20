@@ -2,7 +2,7 @@
 
 # Pickups
 
-As we age and get away from our childhood practices, it becomes harder and harder to find people to stay fit and have fun with. Pickups was designed to keep us close to the group activities we love and help bring neighbors together.
+As we age and get away from our childhood practices, it becomes harder and harder to find people to stay fit and have fun with. Pickups was designed to keep us close to the group activities we love and help bring neighbors together!
 
 We built our app to cater to people like:
 
