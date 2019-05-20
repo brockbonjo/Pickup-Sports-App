@@ -18,7 +18,6 @@
       </div>
       <div class="join">
         <form  action="/show/<%=pickup._id %>" method="POST">
-          
 
           <!-- if user.id !== host.id show button, pass user.id into rsvp list -->
           <input class="joinButton" type="submit" value="Click to RSVP" >
@@ -121,7 +120,7 @@
   </tr>
   <% pickup.otherComments.forEach(function(p) { %>
   <tr>
-    <td class="com">Player commented:</td>
+    <td class="com"><%= p.name%> commented:</td>
     <td class="post"><%=p.info%></td>
   </tr>
   <% }) %>

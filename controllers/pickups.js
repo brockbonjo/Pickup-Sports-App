@@ -62,20 +62,18 @@ function showProfile(req, res) {
 }
 
 
-function addComment(req, res) {
+async function addComment(req, res) {
   var comment = new Comment(req.body);
   comment.info = req.body;
   comment.player = req.user.id;
+  comment.name = req.user.name;
   comment.pickup = req.params.id;
-  comment.save;
-  console.log(comment);
-  Pickup.findById(req.params.id, function (err, pickup) {
-    // console.log(req.params.id);
-    // console.log(comment + ' after find');
-    pickup.otherComments.push(comment);
-    pickup.save;
-    req.user.save;
-    console.log(pickup.otherComments);
+  // comment.save;
+
+  var p = await Pickup.findById(req.params.id)
+  p.otherComments.push(comment);
+
+  Pickup.findByIdAndUpdate(req.params.id, {otherComments: p.otherComments}, {new: true}, function (err, pickup) {
     res.render(`pickups/show`, {
       pickup,
       user: req.user.id,
@@ -137,7 +135,7 @@ function createNew(req, res) {
   for (let key in req.body) {
     if (req.body[key] === '') delete req.body[key];
   }
-  console.log(req.body); 
+  console.log(req.body);
   //making new pickup from model
   var pickup = new Pickup(req.body);
   pickup.save(function (err) {
@@ -164,10 +162,9 @@ function createNew(req, res) {
 function showGame(req, res) {
   Pickup.findById(req.params.id)
   .populate('rsvp').exec(function(err, pickup, guy) {
-    console.log(req.user);
     res.render(`pickups/show`, {
       pickup: pickup,
-      user: req.user,
+      user: req.params.id,
     });
   });
 }
