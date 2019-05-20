@@ -137,7 +137,7 @@ function createNew(req, res) {
   for (let key in req.body) {
     if (req.body[key] === '') delete req.body[key];
   }
-  console.log(req.body);
+  console.log(req.body); 
   //making new pickup from model
   var pickup = new Pickup(req.body);
   pickup.save(function (err) {
