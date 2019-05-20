@@ -1,20 +1,34 @@
 <%- include('../partials/header') %>
 
+<script   src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCJPsnFimaA4YhK6htIku8Cz0gM10FtA1I"> </script>
 
 <main>
   <!-- forEach for all active pickups in sport -->
-  <% pickup.forEach(function (p) { %>
+  <% pickup.forEach(function (p, idx) { %>
+  <% console.log(p) %>
   <a href="/show/<%= p._id %>">
   <div class="pickup">
-    <div id="pleaseWork">
-      <% if (p.location == 'ZilkerPark') {%>
-        <img src="https://maps.googleapis.com/maps/api/staticmap?center=30.267340058514105,-97.76864196442546&zoom=12&size=300x200&key=AIzaSyBKZZSoBeHigMVBfIyGZHEZqqLPiGJkU38" alt="">
-        <% } else if (p.location == 'UT Fields') { %>
-        <img src="https://maps.googleapis.com/maps/api/staticmap?center=30.281161296200004,-97.7344150433724&zoom=12&size=300x200&key=AIzaSyBKZZSoBeHigMVBfIyGZHEZqqLPiGJkU38" alt="">
-        <% } else if (p.location == 'Onion Creek') { %>
-        <img src="https://maps.googleapis.com/maps/api/staticmap?center=30.176359699426296,-97.7419014190873&zoom=12&size=300x200&key=AIzaSyBKZZSoBeHigMVBfIyGZHEZqqLPiGJkU38" alt="">
-      <% } %>
+    <div class="rightNew">
+      <div class="map">
+        <div id="map"></div>
+        <script id="map" type="text/javascript">
 
+            var options = {
+              zoom: 12,
+              center: {lat: <%=p.lat%>, lng: <%=p.lon%> },
+              zoomControl: false,
+              streetViewControl: false,
+              mapTypeControl: false,
+            }
+            var map<%=idx%> = new google.maps.Map(document.getElementById("map"), options);
+            var marker = new google.maps.Marker({
+              position: {lat: <%=p.lat%>, lng: <%=p.lon%> },
+              map: map<%=idx%>
+            })
+
+
+        </script>
+      </div>
     </div>
     <div class="timeStamp">
       Started: <%= p.createdAt %>

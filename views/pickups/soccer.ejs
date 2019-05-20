@@ -1,6 +1,6 @@
 <%- include('../partials/header') %>
 
-<script   src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCJPsnFimaA4YhK6htIku8Cz0gM10FtA1I&callback=initMap"> </script>
+<script   src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCJPsnFimaA4YhK6htIku8Cz0gM10FtA1I"> </script>
 
 <main>
   <!-- forEach for all active pickups in sport -->
@@ -12,8 +12,7 @@
       <div class="map">
         <div id="map"></div>
         <script id="map" type="text/javascript">
-          function initMap() {
-            console.log(<%=idx%>)
+
             var options = {
               zoom: 12,
               center: {lat: <%=p.lat%>, lng: <%=p.lon%> },
@@ -26,8 +25,8 @@
               position: {lat: <%=p.lat%>, lng: <%=p.lon%> },
               map: map<%=idx%>
             })
-          }
-          initMap();
+
+
         </script>
       </div>
     </div>

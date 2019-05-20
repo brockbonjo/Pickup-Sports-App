@@ -1,4 +1,5 @@
 <%- include('../partials/header') %>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCJPsnFimaA4YhK6htIku8Cz0gM10FtA1I&callback=initMap"> </script>
 <main id="show">
 
 
@@ -17,20 +18,93 @@
       </div>
       <div class="join">
         <form  action="/show/<%=pickup._id %>" method="POST">
+          <%= (pickup.rsvp[0]._id === user._id) ? `working correctly`  : 'not working' %>
+
           <!-- if user.id !== host.id show button, pass user.id into rsvp list -->
           <input class="joinButton" type="submit" value="Click to RSVP" >
         </form>
       </div>
     </div>
     <div class="rightShow">
-      <div class="showMap">
-        <% if (pickup.location == 'ZilkerPark') {%>
-          <img src="https://maps.googleapis.com/maps/api/staticmap?center=30.267340058514105,-97.76864196442546&zoom=12&size=300x200&key=AIzaSyBKZZSoBeHigMVBfIyGZHEZqqLPiGJkU38" alt="">
-          <% } else if (pickup.location == 'UT Fields') { %>
-          <img src="https://maps.googleapis.com/maps/api/staticmap?center=30.281161296200004,-97.7344150433724&zoom=12&size=300x200&key=AIzaSyBKZZSoBeHigMVBfIyGZHEZqqLPiGJkU38" alt="">
-          <% } else if (pickup.location == 'Onion Creek') { %>
-          <img src="https://maps.googleapis.com/maps/api/staticmap?center=30.176359699426296,-97.7419014190873&zoom=12&size=300x200&key=AIzaSyBKZZSoBeHigMVBfIyGZHEZqqLPiGJkU38" alt="">
-        <% } %>
+      <div class="showMap" id="map">
+        <script id="map" type="text/javascript">
+
+          var map, marker;
+
+          console.log('test')
+          console.log(<%=pickup%>);
+          console.log(<%=pickup.rsvp[0]._id%>);
+          console.log(<%=user._id%>);
+
+          function initMap() {
+            var options = {
+              zoom: 12,
+              center: {lat: 30.2672, lng:-97.7431},
+              zoomControl: false,
+              streetViewControl: false,
+              mapTypeControl: false,
+
+            }
+            //Not Needed right now
+            var locations = [
+            {lat:<%= pickup.lat %>, lng: <%= pickup.lon %> },
+            {lat: 32.27, lng: -89.62 },
+            userLoc
+            ];
+            var bound = new google.maps.LatLngBounds();
+            var newCenter = () => {
+              for (i = 0; i < locations.length; i++) {
+                bound.extend( new google.maps.LatLng(locations[0], locations[1]) );}
+              console.log(bound);
+              var center = bound.getCenter();
+              return center
+            }
+            newCenter();
+
+
+            map = new google.maps.Map(document.getElementById('map'), options);
+            marker = new google.maps.Marker;
+
+            //centers map on user location
+            var userLoc = () => {if (navigator.geolocation) {
+              navigator.geolocation.getCurrentPosition(function(position) {
+                var pos = {
+                  lat: position.coords.latitude,
+                  lng: position.coords.longitude
+                };
+                map.setCenter(pos);
+                // locations.push(pos);
+
+              })
+              } else {
+                // Browser doesn't support Geolocation, sets location to Austin
+                map.setCenter({lat: 30.2672, lng:-97.7431});
+            }}
+
+            var markers = [
+            {
+              coords: {lat:<%= pickup.lat %>, lng: <%= pickup.lon %> },
+              map: map,
+            },
+            ];
+
+
+
+            for (var i = 0; i < markers.length; i++) {
+              addMarker(markers[i]);
+            }
+
+
+            function addMarker(props) {
+              var marker = new google.maps.Marker({
+                position: props.coords,
+                map: map,
+              });
+
+            }
+          }
+
+        </script>
       </div>
     </div>
   </div>

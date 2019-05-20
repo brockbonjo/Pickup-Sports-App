@@ -164,10 +164,10 @@ function createNew(req, res) {
 function showGame(req, res) {
   Pickup.findById(req.params.id)
   .populate('rsvp').exec(function(err, pickup, guy) {
-    console.log(pickup);
+    console.log(req.user);
     res.render(`pickups/show`, {
       pickup: pickup,
-      user: req.params.id,
+      user: req.user,
     });
   });
 }
