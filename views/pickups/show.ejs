@@ -18,7 +18,7 @@
       </div>
       <div class="join">
         <form  action="/show/<%=pickup._id %>" method="POST">
-          <%= (pickup.rsvp[0]._id === user._id) ? `working correctly`  : 'not working' %>
+          
 
           <!-- if user.id !== host.id show button, pass user.id into rsvp list -->
           <input class="joinButton" type="submit" value="Click to RSVP" >
@@ -32,26 +32,45 @@
           var map, marker;
 
           console.log('test')
-          console.log(<%=pickup%>);
-          console.log(<%=pickup.rsvp[0]._id%>);
-          console.log(<%=user._id%>);
+          console.log(<%=pickup.lat%>);
 
           function initMap() {
             var options = {
               zoom: 12,
-              center: {lat: 30.2672, lng:-97.7431},
+              center: {lat:<%= pickup.lat %>, lng: <%= pickup.lon %> } || {lat: 30.2672, lng:-97.7431},
               zoomControl: false,
               streetViewControl: false,
               mapTypeControl: false,
 
             }
-            //Not Needed right now
-            var locations = [
-            {lat:<%= pickup.lat %>, lng: <%= pickup.lon %> },
-            {lat: 32.27, lng: -89.62 },
-            userLoc
+
+            map = new google.maps.Map(document.getElementById('map'), options);
+            // marker = new google.maps.Marker;
+
+            var markers = [
+            {
+              coords: {lat:<%= pickup.lat %>, lng: <%= pickup.lon %> },
+              map: map,
+            },
             ];
-            var bound = new google.maps.LatLngBounds();
+
+            for (var i = 0; i < markers.length; i++) {
+              addMarker(markers[i]);
+            }
+
+            function addMarker(props) {
+              marker = new google.maps.Marker({
+                position: props.coords,
+                map: map,
+              });
+
+            }
+            //Not Needed right now
+            /*var locations = [
+            {lat: },
+            ];*/
+
+            /*var bound = new google.maps.LatLngBounds();
             var newCenter = () => {
               for (i = 0; i < locations.length; i++) {
                 bound.extend( new google.maps.LatLng(locations[0], locations[1]) );}
@@ -59,14 +78,10 @@
               var center = bound.getCenter();
               return center
             }
-            newCenter();
-
-
-            map = new google.maps.Map(document.getElementById('map'), options);
-            marker = new google.maps.Marker;
+            newCenter();*/
 
             //centers map on user location
-            var userLoc = () => {if (navigator.geolocation) {
+            /*var userLoc = () => {if (navigator.geolocation) {
               navigator.geolocation.getCurrentPosition(function(position) {
                 var pos = {
                   lat: position.coords.latitude,
@@ -79,29 +94,9 @@
               } else {
                 // Browser doesn't support Geolocation, sets location to Austin
                 map.setCenter({lat: 30.2672, lng:-97.7431});
-            }}
-
-            var markers = [
-            {
-              coords: {lat:<%= pickup.lat %>, lng: <%= pickup.lon %> },
-              map: map,
-            },
-            ];
+            }}*/
 
 
-
-            for (var i = 0; i < markers.length; i++) {
-              addMarker(markers[i]);
-            }
-
-
-            function addMarker(props) {
-              var marker = new google.maps.Marker({
-                position: props.coords,
-                map: map,
-              });
-
-            }
           }
 
         </script>
