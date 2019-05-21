@@ -108,9 +108,9 @@ function joinGame(req, res) {
 
     });
 
-    player.currentGame = [0];
+
     player.pastGames.push(player.currentGame);
-    player.currentGame.push(pickup);
+    player.currentGame = pickup;
     player.save(function () {
 
     });

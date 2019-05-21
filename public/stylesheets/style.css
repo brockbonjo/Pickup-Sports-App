@@ -211,7 +211,7 @@ label {
   margin: 0 auto;
 }
 
-.help{
+.profileMain{
   width: 500px;
   margin-left: 15%;
 }
@@ -224,14 +224,51 @@ label {
   background-color: white;
   grid-template-columns: 250px 250px;
   grid-template-areas:
-    "leftShow rightShow"
+    "leftProfile rightProfile"
+}
+
+.leftProfile {
+  border: 1px solid black;
+  display: grid;
+  grid-template-columns: 249px;
+  grid-template-rows: 50px 50px 50px 50px;
+  grid-template-areas:
+    "comments"
+    "timestamp"
+    "numPlayers"
+    "gameLink"
+}
+
+.gameLink{
+  grid-area: gameLink;
+}
+
+.gameLink > a{
+  text-decoration: underline;
+  color: blue;
+  font-size: 18px;
+}
+
+.rightProfile{
+  border-top: 1px solid black;
+  border-right: 1px solid black;
+  border-bottom: 1px solid black;
+  display: grid;
+  grid-template-columns: 300px;
+  grid-template-rows: 200px;
+  grid-template-areas:
+    "map"
+}
+
+.profileMap {
+  width: 249px;
 }
 
 
 
 /* show Pickup styling */
 
-.helpShow{
+.showPage{
   width: 500px;
   margin: 0;
 }

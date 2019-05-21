@@ -1,5 +1,5 @@
 <%- include('../partials/header') %>
-
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCJPsnFimaA4YhK6htIku8Cz0gM10FtA1I&callback=initMap"> </script>
 
 <main class="profile">
 </main>
@@ -7,25 +7,65 @@
 <img src="<%= player.avatar %>" alt="">
 
 
-<div class="help">
+<div class="profileMain">
   <h4>Your next pickup is:</h4>
   <div class="profileDetails">
 
-    <div class="leftShow">
+    <div class="leftProfile">
       <div class="comments">
-        Host Comments: <%= /*pickup.hostComments*/ %>
+        Host Comments: <%= player.currentGame[0].hostComments %>
       </div>
       <div class="timestampShow">
-         Game Started: <%= /*pickup.createdAt*/ %>
+         Game Started: <%= player.currentGame[0].createdAt %>
       </div>
       <div class="numPlayersShow">
-        <%= /*pickup.numOriginalPlayers + pickup.rsvp.length*/ %>
+        Players:  <%= player.currentGame[0].numOriginalPlayers + player.currentGame[0].rsvp.length %>
+      </div>
+      <div class="gameLink">
+        <a href="/show/<%= player.currentGame[0]._id %>"> More Details </a>
       </div>
 
     </div>
-    <div class="rightShow">
-      <div class="showMap">
-        <%= /*pickup.location*/ %>
+    <div class="rightProfile">
+      <div class="profileMap" id="map">
+        <script id="map" type="text/javascript">
+
+          var map, marker;
+          function initMap() {
+            var options = {
+              zoom: 12,
+              center: {lat:<%= player.currentGame[0].lat %>, lng: <%= player.currentGame[0].lon %> } || {lat: 30.2672, lng:-97.7431},
+              zoomControl: false,
+              streetViewControl: false,
+              mapTypeControl: false,
+
+            }
+
+            map = new google.maps.Map(document.getElementById('map'), options);
+            // marker = new google.maps.Marker;
+
+            var markers = [
+            {
+              coords: {lat:<%= player.currentGame[0].lat %>, lng: <%= player.currentGame[0].lon %> },
+              map: map,
+            },
+            ];
+
+            for (var i = 0; i < markers.length; i++) {
+              addMarker(markers[i]);
+            }
+
+            function addMarker(props) {
+              marker = new google.maps.Marker({
+                position: props.coords,
+                map: map,
+              });
+
+            }
+
+          }
+
+        </script>
       </div>
     </div>
 
@@ -45,9 +85,9 @@
     <tbody>
       <% player.pastGames.forEach(function (p) { %>
       <tr>
-        <td> <%= p.sport %> </td>
-        <td> <%= p.location %> </td>
-        <td> <%= p.date%> </td>
+        <td> <%= p[0].sport %> </td>
+        <td> <%= p[0].createdAt%> </td>
+        <td> <a href="/show/<%= p[0]._id %>" style="text-decoration:underline;color:blue;"> More Details </a> </td>
       </tr>
     <% }); %>
     </tbody>
