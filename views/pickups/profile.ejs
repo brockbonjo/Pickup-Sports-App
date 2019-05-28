@@ -10,7 +10,7 @@
 <div class="profileMain">
   <h4>Your next pickup is:</h4>
   <div class="profileDetails">
-
+    <% if (player.currentGame.length > 0) {%>
     <div class="leftProfile">
       <div class="comments">
         Host Comments: <%= player.currentGame[0].hostComments %>
@@ -68,7 +68,7 @@
         </script>
       </div>
     </div>
-
+    <% }%>
   </div>
 </div>
 
@@ -76,20 +76,22 @@
 
 
   <h4>Your past pickups: </h4>
-  <table>
-    <thead>
-    <th>Sport</th>
-    <th>Location</th>
-    <th>Date</th>
+  <table class="profileTable">
+    <thead >
+      <tr class="tableHead">
+        <th>Sport</th>
+        <th>Location</th>
+        <th>Date</th>
+      </tr>
     </thead>
     <tbody>
-      <% player.pastGames.forEach(function (p) { %>
-      <tr>
-        <td> <%= p[0].sport %> </td>
-        <td> <%= p[0].createdAt%> </td>
-        <td> <a href="/show/<%= p[0]._id %>" style="text-decoration:underline;color:blue;"> More Details </a> </td>
-      </tr>
-    <% }); %>
+      <% if (player.pastGames.length > 1) { console.log(player); player.pastGames.forEach(function (p) { %>
+        <tr class="tableRow">
+          <td> <%= p[0].sport %> </td>
+          <td> <%= p[0].createdAt%> </td>
+          <td> <a href="/show/<%= p[0]._id %>" style="text-decoration:underline;color:blue;"> More Details </a> </td>
+        </tr>
+      <% })}; %>
     </tbody>
   </table>
 </main>

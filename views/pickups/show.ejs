@@ -17,15 +17,28 @@
         Players RSVPd: <br><%= pickup.numOriginalPlayers + pickup.rsvp.length %>
       </div>
       <div class="join">
-        <form  action="/show/<%=pickup._id %>" method="POST">
 
-          <!-- if user.id !== host.id show button, pass user.id into rsvp list -->
-          <input class="joinButton" type="submit" value="Click to RSVP" >
-        </form>
+        <% if (user) { console.log('post-user') %>
+          <% if (pickup.rsvp.length > 0 ) {
+              for (x = 0; x < pickup.rsvp.length; x++) {
+                if (pickup.rsvp[x]._id.equals(user._id)) { %>
+                  You're RSVPd!
+                <% break;} else if (x == pickup.rsvp.length-1) { %>
+                <form  action="/show/<%=pickup._id %>" method="POST">
+                  <input class="joinButton" type="submit" value="Click to RSVP" >
+                </form>
+                <% break; }%>
+            <%}} else {%>
+              <form  action="/show/<%=pickup._id %>" method="POST">
+                <input class="joinButton" type="submit" value="Click to RSVP" >
+              </form>
+        <%} } else {%>
+          <a href="/auth/google" class="logout">  Please log in to RSVP </a>
+        <% } %>
       </div>
     </div>
     <div class="rightShow">
-      <div class="showMap" id="map">
+      <div class="showMap" id="map" style="height:100%;width:298px;">
         <script id="map" type="text/javascript">
 
           var map, marker;
@@ -78,7 +91,6 @@
               return center
             }
             newCenter();*/
-
             //centers map on user location
             /*var userLoc = () => {if (navigator.geolocation) {
               navigator.geolocation.getCurrentPosition(function(position) {
@@ -94,8 +106,6 @@
                 // Browser doesn't support Geolocation, sets location to Austin
                 map.setCenter({lat: 30.2672, lng:-97.7431});
             }}*/
-
-
           }
 
         </script>
@@ -108,7 +118,7 @@
 <!-- comment form -->
 
 <!-- <div class="commentTable"> -->
-<table class="table">
+<table class="showTable">
   <tr>
     <th>Player</th>
     <th>Comment</th>

@@ -76,7 +76,7 @@ async function addComment(req, res) {
   Pickup.findByIdAndUpdate(req.params.id, {otherComments: p.otherComments}, {new: true}, function (err, pickup) {
     res.render(`pickups/show`, {
       pickup,
-      user: req.user.id,
+      user: req.user,
     }
   );
   });
@@ -164,7 +164,7 @@ function showGame(req, res) {
   .populate('rsvp').exec(function(err, pickup, guy) {
     res.render(`pickups/show`, {
       pickup: pickup,
-      user: req.params.id,
+      user: req.user,
     });
   });
 }
