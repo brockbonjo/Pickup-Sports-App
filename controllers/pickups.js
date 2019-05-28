@@ -82,20 +82,20 @@ async function addComment(req, res) {
   });
 }
 
-// function addComment(req, res) {
-//   var comment = new Comment(req.body);
-//   comment.info = req.body;
-//   comment.player = req.user.id;
-//   comment.pickup = req.params.id;
-//   comment.save;
-//   console.log(comment);
-//
-//   Pickup.findByIdAndUpdate(req.params.id, function (pickup) {
-//     pickup.otherComments.push(comment);
-//     console.log(pickup.otherComments);
-//     res.render('pickups/show', {
-//       pickup,
-//       user: req.user.id,
+
+// async function joinGame(req, res) {
+//   var player = req.user;
+//   var p = await Pickup.findById(req.params.id);
+//   p.rsvp.push(player);
+//   var u = await Player.findById(req.user.id);
+//   console.log(u);
+//   u.pastGames.push(u.currentGame);
+//   Pickup.findByIdAndUpdate(req.params.id, {rsvp: p.rsvp} {new: true}, function (err, pickup) {
+//     Player.findByIdAndUpdate(req.user.id, {currentGame: pickup, pastGames: u.pastGames}, function (err, user) {
+//       res.render('pickups/show', {
+//         pickup: pickup,
+//         user: req.params.id,
+//       });
 //     });
 //   });
 // }
@@ -105,7 +105,6 @@ function joinGame(req, res) {
   Pickup.findById(req.params.id, function (err, pickup) {
     pickup.rsvp.push(player);
     pickup.save(function () {
-
     });
 
 
@@ -116,7 +115,7 @@ function joinGame(req, res) {
     });
     res.render('pickups/show', {
       pickup: pickup,
-      user: req.params.id,
+      user: req.user,
     });
   });
 }

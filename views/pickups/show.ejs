@@ -18,7 +18,7 @@
       </div>
       <div class="join">
 
-        <% if (user) { console.log('post-user') %>
+        <% if (user) { %>
           <% if (pickup.rsvp.length > 0 ) {
               for (x = 0; x < pickup.rsvp.length; x++) {
                 if (pickup.rsvp[x]._id.equals(user._id)) { %>
