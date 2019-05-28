@@ -13,6 +13,7 @@ module.exports = {
   deleteGame,
   showProfile,
   joinGame,
+  unjoinGame,
   addComment,
 };
 
@@ -83,22 +84,29 @@ async function addComment(req, res) {
 }
 
 
-// async function joinGame(req, res) {
-//   var player = req.user;
-//   var p = await Pickup.findById(req.params.id);
-//   p.rsvp.push(player);
-//   var u = await Player.findById(req.user.id);
-//   console.log(u);
-//   u.pastGames.push(u.currentGame);
-//   Pickup.findByIdAndUpdate(req.params.id, {rsvp: p.rsvp} {new: true}, function (err, pickup) {
-//     Player.findByIdAndUpdate(req.user.id, {currentGame: pickup, pastGames: u.pastGames}, function (err, user) {
-//       res.render('pickups/show', {
-//         pickup: pickup,
-//         user: req.params.id,
-//       });
-//     });
-//   });
-// }
+async function unjoinGame(req, res) {
+  var idx
+  var player = req.user;
+  console.log(req.user);
+  var p = await Pickup.findById(req.params.id);
+  console.log(p);
+  for (i = 0; i < p.rsvp.length; i++){
+    if (p.rsvp[i]._id.equals(req.user._id)) {
+      var idx = i;
+    }
+  }
+  console.log(idx);
+  p.rsvp.splice(idx, 1);
+  console.log('before findbyupdate')
+  Pickup.findByIdAndUpdate(req.params.id, {rsvp: p.rsvp}, {new: true}, function (err, pickup) {
+    Player.findByIdAndUpdate(req.user.id, {currentGame: []}, function (err, user) {
+      res.render('pickups/show', {
+        pickup: pickup,
+        user: user,
+      });
+    });
+  });
+}
 
 function joinGame(req, res) {
   var player = req.user;
@@ -107,8 +115,8 @@ function joinGame(req, res) {
     pickup.save(function () {
     });
 
-
-    player.pastGames.push(player.currentGame);
+    if (player.currentGame.length > 0) {
+    player.pastGames.push(player.currentGame);}
     player.currentGame = pickup;
     player.save(function () {
 

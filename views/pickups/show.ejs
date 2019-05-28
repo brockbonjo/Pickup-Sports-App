@@ -22,7 +22,10 @@
           <% if (pickup.rsvp.length > 0 ) {
               for (x = 0; x < pickup.rsvp.length; x++) {
                 if (pickup.rsvp[x]._id.equals(user._id)) { %>
-                  You're RSVPd!
+
+                  <form  action="/show/<%=pickup._id %>/unjoin" method="POST">
+                    <input class="joinButton" type="submit" value="You're RSVPd! Click to un-RSVP" >
+                  </form>
                 <% break;} else if (x == pickup.rsvp.length-1) { %>
                 <form  action="/show/<%=pickup._id %>" method="POST">
                   <input class="joinButton" type="submit" value="Click to RSVP" >

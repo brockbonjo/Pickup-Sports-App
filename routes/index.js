@@ -22,8 +22,9 @@ router.delete('/show/:id', pickupsController.deleteGame);
 router.get('/user/', pickupsController.showProfile)
 
 router.post('/show/:id', pickupsController.joinGame);
+router.post('/show/:id/unjoin', pickupsController.unjoinGame);
 
-router.post('/show/:id/comment', pickupsController.addComment);
+router.post('/show/:id/comment',  pickupsController.addComment);
 
 router.get('/profile/:id', pickupsController.showProfile);
 
