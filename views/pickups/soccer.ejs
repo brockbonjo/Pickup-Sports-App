@@ -4,13 +4,12 @@
 
 <main>
   <!-- forEach for all active pickups in sport -->
-  <% pickup.forEach(function (p, idx) { %>
-  <% console.log(p) %>
-  <a href="/show/<%= p._id %>">
+  <%  pickup.forEach(function (p, idx) { %>
+  <a href="/show/<%= p._id %>" id="showLink<%=idx%>">
   <div class="pickup">
     <div class="indexMap">
       <div class="map">
-        <div id="map<%=idx%>" style="height:100%;width:298px;"></div>
+        <div id="map<%=idx%>" style="height:100%;width:298px;" ></div>
         <script id="map" type="text/javascript">
 
             var options = {
@@ -25,7 +24,8 @@
               position: {lat: <%=p.lat%>, lng: <%=p.lon%> },
               map: map<%=idx%>
             })
-            console.log(<%=idx%>);
+
+
 
         </script>
       </div>
@@ -38,9 +38,30 @@
     </div>
   </div>
   </a>
+  <script defer>
+
+    var flag = 0;
+
+    document.getElementById("showLink<%=idx%>").addEventListener("mousedown", function (e) {
+      flag = 0;
+      console.log(flag);
+    });
+    document.getElementById("showLink<%=idx%>").addEventListener("mousemove", function (e) {
+      flag = 1;
+      console.log(flag);
+    });
+
+    document.getElementById("showLink<%=idx%>").addEventListener("click", function (e) {
+      if (flag === 1) {
+        e.preventDefault();
+      }
+    })
+
+  </script>
   <% }) %>
 
 </main>
+
 
 
 <%- include('../partials/footer') %>
